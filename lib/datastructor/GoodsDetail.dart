@@ -1,7 +1,10 @@
 class GoodsDetail{
-  var goodsId;
+  int goodsId;
   var name;
   var description;
-  var originalPrice;
-  var currentPrice;
+  var imageUrl;
+  double originalPrice;
+  double currentPrice;
+  int classifyid;
+  var classifyname;
 }
