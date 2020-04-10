@@ -4,6 +4,7 @@ import 'dart:math';
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:connectivity/connectivity.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter_test_01/datastructor/GoodsDetail.dart';
 import 'package:flutter_test_01/datastructor/GoodsClassify.dart';
@@ -221,19 +222,19 @@ class ViewPagerState extends State<SimpleViewPager> {
     new ConstrainedBox(
         constraints: const BoxConstraints.expand(),
         child: new Image.asset(
-          'images/test_image.png',
+          'images/fruits.jpg',
           fit: BoxFit.fill,
         )),
     new ConstrainedBox(
         constraints: const BoxConstraints.expand(),
         child: new Image.asset(
-          'images/test02.png',
+          'images/meat01.jpg',
           fit: BoxFit.fill,
         )),
     new ConstrainedBox(
         constraints: const BoxConstraints.expand(),
         child: new Image.asset(
-          'images/test03.jpg',
+          'images/vegetable04.jpg',
           fit: BoxFit.fill,
         )),
   ];
@@ -247,8 +248,10 @@ class ViewPagerState extends State<SimpleViewPager> {
   }
 
   void SendHttpRequest(String requestType) async {
-    int resultCode = await methodChannel.invokeMethod("checknet");
-    if (resultCode == ConstantAssemble.NET_STATE_CONNECTED) {
+//    int resultCode = await methodChannel.invokeMethod("checknet");
+    Connectivity connectivity = new Connectivity();
+    ConnectivityResult result=await connectivity.checkConnectivity();
+    if (result!=ConnectivityResult.none) {
       print("begin to request");
       try {
         if (socket == null) {
@@ -297,7 +300,7 @@ class ViewPagerState extends State<SimpleViewPager> {
       }
       isFirstRequest = !isFirstRequest;
     }
-    if(_classifies.length!=0){
+    if (_classifies.length != 0) {
       List<GoodsDetail> tempDetails = await operator.GetGoodsinfos(
           _classifies[currentClassifyIndex].classifyId);
       if (tempDetails.length != 0) {
@@ -527,6 +530,7 @@ class ViewPagerState extends State<SimpleViewPager> {
                 shrinkWrap: true,
               ),
               width: 130,
+              height: 500,
             ),
             new Container(
               child: new ListView.builder(
@@ -586,6 +590,7 @@ class ViewPagerState extends State<SimpleViewPager> {
                 shrinkWrap: true,
               ),
               width: 230,
+              height: 500,
             )
           ],
         )

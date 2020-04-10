@@ -1,5 +1,6 @@
 import 'package:video_player/video_player.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class VideoPlayerRoute extends StatelessWidget {
   @override
@@ -21,9 +22,13 @@ bool isPlaying=false;
 
   @override
   void initState() {
-    controller=new VideoPlayerController.network("http://baobab.kaiyanapp.com/api/v4/video/related?id=188045");
-    controller.play();
-    isPlaying=true;
+    SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeLeft,DeviceOrientation.landscapeRight]);
+    controller=VideoPlayerController.asset("videos/Nobulletbyhenan.mp4")..initialize().then((_){
+      setState(() {
+
+      });
+    });
+    controller.setVolume(0.3);
   }
 
   @override
@@ -37,7 +42,10 @@ bool isPlaying=false;
           alignment: AlignmentDirectional.center,
           children: <Widget>[
             new VideoPlayer(controller),
-            new Icon(Icons.pause_circle_outline),
+            new Offstage(
+              offstage: isPlaying,
+              child: new Icon(Icons.pause_circle_outline),
+            ),
           ],
         ),
         onTap: (){
@@ -52,5 +60,12 @@ bool isPlaying=false;
         },
       )
     );
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+    super.dispose();
   }
 }

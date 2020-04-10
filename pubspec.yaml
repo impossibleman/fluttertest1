@@ -85,6 +85,9 @@ flutter:
   - images/radish01.jpg
   - images/tomato01.jpg
   - images/tonghao01.jpg
+  - images/fruits01.jpg
+  - images/meat01.jpg
+  - images/vegetables04.jpg
   - images/headimage01.jpg
   - images/headimage02.jpg
   - images/headimage03.jpg
@@ -94,6 +97,7 @@ flutter:
   - images/headimage07.jpg
   - images/headimage08.jpg
   - images/headimage09.jpg
+  - videos/Nobulletbyhenan.mp4
 
 
   # For details regarding adding assets from package dependencies, see
