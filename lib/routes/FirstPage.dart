@@ -214,9 +214,9 @@ class ViewPagerState extends State<SimpleViewPager> {
   static const _curve = Curves.ease;
   final _arrowColor = Colors.black.withOpacity(0.8);
   final List<String> imgUrl = <String>[
-    'images/test_image.png',
-    'images/test02.png',
-    'images/test03.jpg'
+    'images/fruits.jpg',
+    'images/meat01.jpg',
+    'images/vegetables04.jpg'
   ];
   final List<Widget> _pages = <Widget>[
     new ConstrainedBox(
@@ -234,7 +234,7 @@ class ViewPagerState extends State<SimpleViewPager> {
     new ConstrainedBox(
         constraints: const BoxConstraints.expand(),
         child: new Image.asset(
-          'images/vegetable04.jpg',
+          'images/vegetables04.jpg',
           fit: BoxFit.fill,
         )),
   ];
@@ -450,11 +450,11 @@ class ViewPagerState extends State<SimpleViewPager> {
     }
     return new Column(
       children: <Widget>[
-        new Center(
+        new Center(//image viewpager
           child: new IconTheme(
               data: new IconThemeData(color: _arrowColor),
               child: new Container(
-                height: 150.0,
+                height: 220.0,
                 child: new Stack(
                   alignment: AlignmentDirectional.topCenter,
                   children: <Widget>[
@@ -496,7 +496,7 @@ class ViewPagerState extends State<SimpleViewPager> {
                 ),
               )),
         ),
-        new Row(
+        new Expanded(child: new Row(
           children: <Widget>[
             new Container(
               child: ListView.builder(
@@ -530,7 +530,6 @@ class ViewPagerState extends State<SimpleViewPager> {
                 shrinkWrap: true,
               ),
               width: 130,
-              height: 500,
             ),
             new Container(
               child: new ListView.builder(
@@ -566,7 +565,7 @@ class ViewPagerState extends State<SimpleViewPager> {
                                     style: new TextStyle(
                                         fontSize: 12, color: Colors.red),
                                   ),
-                                  width: 130,
+                                  width: 110,
                                   alignment: AlignmentDirectional.bottomEnd,
                                 ),
                                 new Text(
@@ -582,7 +581,7 @@ class ViewPagerState extends State<SimpleViewPager> {
                     onTap: () {
                       Navigator.of(context).push(new MaterialPageRoute(
                           builder: (context) =>
-                              new GoodsDetailRoute(_goodsInfo[index])));
+                          new GoodsDetailRoute(_goodsInfo[index])));
                     },
                   );
                 },
@@ -590,10 +589,9 @@ class ViewPagerState extends State<SimpleViewPager> {
                 shrinkWrap: true,
               ),
               width: 230,
-              height: 500,
             )
           ],
-        )
+        ))
       ],
     );
   }
